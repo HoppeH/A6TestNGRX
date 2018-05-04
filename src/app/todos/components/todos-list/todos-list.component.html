@@ -1,0 +1,19 @@
+<h1>Todos</h1>
+<button (click)="addTodo({id:'1',name: 'Test1',completed: false,CompletedTime: null})" mat-raised-button color="primary">Add Todo</button>
+<button (click)="resetTodos()" mat-raised-button color="warn">Reset todos</button>
+<h1>TODOLIST</h1>
+<div>
+  Antall Todos - {{(todos$ | async)?.length}}
+</div>
+<div *ngIf="!((todos | async)?.length)">
+  Finner ingen todos Gratulerer
+</div>
+
+<mat-card *ngFor="let todo of todos | async" class="example-card">
+<mat-card-content>
+  {{todo.id}} - {{todo.name}}
+</mat-card-content>
+ <mat-card-actions>
+     <button type="button" name="button" (click)="deleteTodo(todo.id)" mat-raised-button color="accent">Delete</button>
+</mat-card-actions>
+</mat-card>

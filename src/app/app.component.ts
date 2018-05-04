@@ -7,6 +7,12 @@ import { ChangeDetectionStrategy } from '@angular/core';
 import * as actions from './actions';
 import * as fromTodos from './counter.reducer';
 
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+
 import { Todo } from './models';
 
 @Component({
@@ -20,30 +26,10 @@ export class AppComponent {
   todos$: Observable<Todo[]>;
   formtodo = '';
   title = 'app';
-  constructor(private store: Store<fromTodos.TodoState>) {
+  constructor(private store: Store<any>) {
     this.count$ = store.pipe(select('count'));
-    console.log(store.pipe(select(fromTodos.selectAll)));
-    this.todos$ = store.pipe(select(fromTodos.selectAll));
   }
 
-  addTodo(todo: Todo) {
-    const TodoData: Todo = {
-      id: new Date().getMilliseconds().toString(),
-      name: todo.name,
-      completed: todo.completed,
-      CompletedTime: todo.CompletedTime
-    };
-    // const todo1 = Array.of(todo);
-    this.store.dispatch(new AddTodo(TodoData));
-  }
-
-  deleteTodo(id: string) {
-    this.store.dispatch(new DeleteTodo(id));
-    console.log('DeleteTodo');
-  }
-  resetTodos() {
-    this.store.dispatch(new ResetTodos());
-  }
   increment() {
     this.store.dispatch({ type: INCREMENT });
   }
