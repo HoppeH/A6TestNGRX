@@ -1,5 +1,6 @@
 // counter.ts
-import { Action } from '@ngrx/store';
+import { Action, createFeatureSelector } from '@ngrx/store';
+import { EntityState, createEntityAdapter } from '@ngrx/entity';
 
 import * as fromTodos from './actions';
 import { Todo } from './models';
@@ -7,10 +8,6 @@ import { Todo } from './models';
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 export const RESET = 'RESET';
-
-// export const ADD_TODO = 'ADD_TODO';
-export const REMOVE_TODO = 'REMOVE_TODO';
-export const RESET_TODOS = 'RESET_TODOS';
 
 export function counterReducer(state: number = 0, action: Action) {
   switch (action.type) {
@@ -27,26 +24,38 @@ export function counterReducer(state: number = 0, action: Action) {
       return state;
   }
 }
+export const todoAdapter = createEntityAdapter<Todo>();
+export interface TodoState extends EntityState<Todo> {}
 
+const defaultTodo = {};
+
+export const initialTodoState: TodoState = todoAdapter.getInitialState(
+  defaultTodo
+);
 export function TodoReducer(
-  state: Todo[] = [
-    { id: 1, name: 'InitialState', completed: true, CompletedTime: new Date() }
-  ],
+  state = initialTodoState,
   action: fromTodos.TodoActions
 ) {
   switch (action.type) {
     case fromTodos.ADD_TODO:
-      console.log(action.todo);
-      const todo = action.todo;
-      return [...state, todo];
+      return todoAdapter.addOne(action.todo, state);
 
-    // case REMOVE_TODO:
-    // return state.filter(todos => action.id !== todos.id );
+    case fromTodos.DELETE_TODO:
+      return todoAdapter.removeOne(action.id, state);
 
     case fromTodos.RESET_TODOS:
-      return [];
+      return todoAdapter.removeAll(state);
 
     default:
       return state;
   }
 }
+
+export const getTodoState = createFeatureSelector<TodoState>('todos');
+
+export const {
+  selectIds,
+  selectEntities,
+  selectAll,
+  selectTotal
+} = todoAdapter.getSelectors(getTodoState);

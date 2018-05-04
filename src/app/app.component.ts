@@ -4,17 +4,10 @@ import { Observable } from 'rxjs';
 import { INCREMENT, DECREMENT, RESET } from './counter.reducer';
 import { DeleteTodo, AddTodo, ResetTodos } from './actions';
 import { ChangeDetectionStrategy } from '@angular/core';
+import * as actions from './actions';
+import * as fromTodos from './counter.reducer';
 
-interface Todo {
-  name: string;
-  completed: boolean;
-  CompletedTime: Date;
-}
-
-interface AppState {
-  Todos: Todo[];
-  counter: number;
-}
+import { Todo } from './models';
 
 @Component({
   selector: 'app-root',
@@ -27,19 +20,25 @@ export class AppComponent {
   todos$: Observable<Todo[]>;
   formtodo = '';
   title = 'app';
-  constructor(private store: Store<AppState>) {
+  constructor(private store: Store<fromTodos.TodoState>) {
     this.count$ = store.pipe(select('count'));
-    this.todos$ = store.pipe(select('todos'));
+    console.log(store.pipe(select(fromTodos.selectAll)));
+    this.todos$ = store.pipe(select(fromTodos.selectAll));
   }
 
   addTodo(todo: Todo) {
+    const TodoData: Todo = {
+      id: new Date().getMilliseconds().toString(),
+      name: todo.name,
+      completed: todo.completed,
+      CompletedTime: todo.CompletedTime
+    };
     // const todo1 = Array.of(todo);
-    this.store.dispatch(new AddTodo(todo));
-    console.log(todo);
+    this.store.dispatch(new AddTodo(TodoData));
   }
 
-  deleteTodo(todo: Todo) {
-    this.store.dispatch(new DeleteTodo(todo));
+  deleteTodo(id: string) {
+    this.store.dispatch(new DeleteTodo(id));
     console.log('DeleteTodo');
   }
   resetTodos() {

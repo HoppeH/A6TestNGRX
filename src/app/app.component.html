@@ -1,34 +1,26 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h1>Todos</h1>
-
-
-
-  <button (click)="addTodo({ name: 'Test1', completed: false, CompletedTime: null })">Add Todo</button>
+  <h1>Hoppeh Test app</h1>  <button (click)="addTodo({id:'1',name: 'Test1',completed: false,CompletedTime: null})">Add Todo</button>
   <button (click)="resetTodos()">Reset todos</button>
 
-<div *ngIf="!((todos$ | async)?.length)">
+  <div *ngIf="!((todos$ | async)?.length)">
     Finner ingen todos Gratulerer
-</div>
-<div>
+  </div>
+  <div>
     Antall Todos - {{(todos$ | async)?.length}}
-</div>
-<ul>
+  </div>
+  <ul>
   <li *ngFor="let todo of todos$ | async">
-    {{todo.name}} <button type="button" name="button" (click)="deleteTodo($event)">Delete</button>
+    {{todo.name}} <button type="button" name="button" (click)="deleteTodo(todo.id)">Delete</button>
   </li>
-</ul>
+  </ul>
 
 
-<button (click)="increment()">Increment</button>
+  <button (click)="increment()">Increment</button>
     <div>Current Count: {{ count$ | async }}</div>
     <button (click)="decrement()">Decrement</button>
 
     <button (click)="reset()">Reset Counter</button>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+<h1>Todos</h1>
