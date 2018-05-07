@@ -1,3 +1,5 @@
+
+
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span routerLink="/">hoppeh.github.com</span>
@@ -8,38 +10,22 @@
     <mat-icon class="example-icon">delete</mat-icon>
   </mat-toolbar-row>
 </mat-toolbar>
-
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-
-<h1>Hoppeh Test app</h1>
-  <h1>Counter</h1>
-  <button (click)="increment()" mat-raised-button color="primary">Increment</button>
-  <button (click)="decrement()" mat-raised-button color="accent">Decrement</button>
-  <div>Current Count: {{ count$ | async }}</div>
-
-  <button (click)="reset()" mat-raised-button color="warn">Reset Counter</button>
-
-  <!-- <h1>Todos</h1>
-  <button (click)="addTodo({id:'1',name: 'Test1',completed: false,CompletedTime: null})" mat-raised-button color="primary">Add Todo</button>
-  <button (click)="resetTodos()" mat-raised-button color="warn">Reset todos</button> -->
-
-  <div>
-    <!-- Antall Todos - {{(todos$ | async)?.length}}
-  </div>
-  <div *ngIf="!((todos$ | async)?.length)">
-    Finner ingen todos Gratulerer
-  </div>
-
-  <mat-card *ngFor="let todo of todos$ | async" class="example-card">
-  <mat-card-content>
-    {{todo.id}} - {{todo.name}}
-  </mat-card-content>
-   <mat-card-actions>
-       <button type="button" name="button" (click)="deleteTodo(todo.id)" mat-raised-button color="accent">Delete</button>
-  </mat-card-actions>
-  </mat-card> -->
+<div class="container">
+<div class="title">
+  <h1>Hoppeh Test app</h1>
 </div>
 
 
-  <router-outlet></router-outlet>
+
+  <div class="leftConftent divBorder">
+    <h1>Counter</h1>
+      <button (click)="increment()" mat-raised-button color="primary">Increment</button>
+      <button (click)="decrement()" mat-raised-button color="accent">Decrement</button>
+      <div>Current Count: {{ count$ | async }}</div>
+
+      <button (click)="reset()" mat-raised-button color="warn">Reset Counter</button>
+  </div>
+  <div class="rightConftent divBorder">
+    <router-outlet ></router-outlet>
+    </div>
+</div>

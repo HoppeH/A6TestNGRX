@@ -20,6 +20,9 @@ export function TodoReducer(
     case fromTodos.ADD_TODO:
       return todoAdapter.addOne(action.todo, state);
 
+    case fromTodos.UPDATE_TODO:
+      return todoAdapter.updateOne(action.payload.todo, state);
+
     case fromTodos.DELETE_TODO:
       return todoAdapter.removeOne(action.id, state);
 

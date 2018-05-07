@@ -1,6 +1,14 @@
+<app-todo-input
+(add)="addTodo($event)"
+(reset)="resetTodos()"
+></app-todo-input>
+
 <app-todos-list
 [todos]="todos$"
 (add)="addTodo($event)"
+(toggle)="toggleTodo($event)"
 (delete)="deleteTodo($event)"
-(reset)="resetTodos()">
+
+>
+
 </app-todos-list>

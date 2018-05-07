@@ -10,6 +10,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 
 import { Todo } from '../../models';
 
@@ -23,8 +25,9 @@ export class TodosListComponent {
   @Input() todos: Todo[];
 
   @Output() add = new EventEmitter<Todo>();
+  @Output() toggle = new EventEmitter<Todo>();
+
   @Output() delete = new EventEmitter<string>();
-  @Output() reset = new EventEmitter<void>();
 
   constructor() {}
 
@@ -36,7 +39,8 @@ export class TodosListComponent {
     this.delete.emit(id);
   }
 
-  resetTodos() {
-    this.reset.emit();
+  toggleCompleted(todo: Todo) {
+    // console.log(todo);
+    this.toggle.emit(todo);
   }
 }

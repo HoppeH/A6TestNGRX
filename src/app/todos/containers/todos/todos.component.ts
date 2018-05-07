@@ -13,12 +13,11 @@ import { Todo } from '../../models/';
 })
 export class TodosComponent implements OnInit {
   todos$: Observable<Todo[]>;
-
+  todoCount: number;
   constructor(private store: Store<fromStore.TodoState>) {}
 
   ngOnInit() {
     this.todos$ = this.store.select(fromStore.selectAll);
-    console.log(this.todos$);
   }
 
   addTodo(todo: Todo) {
@@ -26,7 +25,7 @@ export class TodosComponent implements OnInit {
       id: new Date().getMilliseconds().toString(),
       name: todo.name,
       completed: todo.completed,
-      CompletedTime: todo.CompletedTime
+      completedTime: todo.completedTime
     };
     // const todo1 = Array.of(todo);
     this.store.dispatch(new fromStore.AddTodo(TodoData));
@@ -34,8 +33,23 @@ export class TodosComponent implements OnInit {
 
   deleteTodo(id: string) {
     this.store.dispatch(new fromStore.DeleteTodo(id));
-    console.log('DeleteTodo');
   }
+
+  toggleTodo(todo: Todo) {
+    const newTodo = todo;
+    newTodo.completed = !todo.completed;
+
+    if (todo.completed === false) {
+      newTodo.completedTime = null;
+    } else {
+      newTodo.completedTime = new Date();
+    }
+
+    this.store.dispatch(
+      new fromStore.UpdateTodo({ todo: { id: newTodo.id, changes: newTodo } })
+    );
+  }
+
   resetTodos() {
     this.store.dispatch(new fromStore.ResetTodos());
   }
