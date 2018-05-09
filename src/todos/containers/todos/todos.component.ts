@@ -13,10 +13,11 @@ import { Todo } from '../../models/';
 })
 export class TodosComponent implements OnInit {
   todos$: Observable<Todo[]>;
-  todoCount: number;
+  // todoCount: number;
   constructor(private store: Store<fromStore.TodoState>) {}
 
   ngOnInit() {
+    this.store.dispatch(new fromStore.LoadTodos());
     this.todos$ = this.store.select(fromStore.selectAll);
   }
 
