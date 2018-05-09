@@ -26,7 +26,12 @@ export function TodoReducer(
 ) {
   switch (action.type) {
     case fromTodos.LOAD_TODOS:
-      return { ...state, loading: true };
+      return {
+        ...state,
+        loading: true,
+        loaded: false,
+        error: false
+      };
 
     case fromTodos.LOAD_TODOS_SUCCESS:
       return adapter.addMany(action.payload, {
@@ -65,9 +70,6 @@ export const getTodosState = createFeatureSelector<TodoState>('todos');
 export const todosLoaded = (state: TodoState) => state.loaded;
 export const todosLoading = (state: TodoState) => state.loading;
 export const todosError = (state: TodoState) => state.error;
-
-// export const getTodosLoading = (state: TodoState) => state.loading;
-// export const getTodosLoaded = (state: TodoState) => state.loaded;
 
 /**
  * Create new selector to watch change on selectedTodoId.

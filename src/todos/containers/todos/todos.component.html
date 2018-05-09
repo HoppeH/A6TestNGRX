@@ -5,7 +5,11 @@
   <div
   *ngIf="(todosError$ | async) === true"
   class="spinner">
-    <button color="warn" mat-raised-button>HALP! - An error has occured, was not able to load data</button>
+    <button color="warn"
+    mat-raised-button
+    (click)="loadTodos()">
+      HALP! - An error has occured, was not able to load data - Press to reload
+    </button>
   </div>
   <div
     class="spinner"

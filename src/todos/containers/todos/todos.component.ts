@@ -42,6 +42,10 @@ export class TodosComponent implements OnInit {
     this.store.dispatch(new fromStore.AddTodo(TodoData));
   }
 
+  loadTodos() {
+    this.store.dispatch(new fromStore.LoadTodos());
+  }
+
   deleteTodo(id: string) {
     this.store.dispatch(new fromStore.DeleteTodo(id));
   }

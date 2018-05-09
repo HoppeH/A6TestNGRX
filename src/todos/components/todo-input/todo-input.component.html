@@ -3,7 +3,7 @@
   <!-- {{todoFormGroup.value | json}} - {{todoCount}} -->
   <form class="example-form"  novalidate [formGroup]="todoFormGroup" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
-    <input matInput type="text" mat-raised-button formControlName="name" placeholder="Add todo">
+    <input matInput type="" mat-raised-button formControlName="name" placeholder="Add todo" autocomplete= 'false | random-string'>
     <mat-error *ngIf="name.hasError('required')">
       Du må skrive inn noe for å legge til en todo.
     </mat-error>
