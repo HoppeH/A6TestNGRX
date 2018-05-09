@@ -2,6 +2,8 @@ import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { Observable } from 'rxjs';
 
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+
 import * as fromStore from '../../store';
 import { Todo } from '../../models/';
 
@@ -13,12 +15,20 @@ import { Todo } from '../../models/';
 })
 export class TodosComponent implements OnInit {
   todos$: Observable<Todo[]>;
-  // todoCount: number;
+  todosCount$: Observable<number>;
+  todosLoading$: Observable<boolean>;
+  todosLoaded$: Observable<boolean>;
+  todosError$: Observable<any>;
+
   constructor(private store: Store<fromStore.TodoState>) {}
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadTodos());
     this.todos$ = this.store.select(fromStore.selectAll);
+    this.todosCount$ = this.store.select(fromStore.selectTotal);
+    this.todosLoading$ = this.store.select(fromStore.getTodosLoading);
+    this.todosLoaded$ = this.store.select(fromStore.getTodosLoading);
+    this.todosError$ = this.store.select(fromStore.getTodosError);
   }
 
   addTodo(todo: Todo) {

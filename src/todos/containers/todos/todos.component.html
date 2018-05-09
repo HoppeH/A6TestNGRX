@@ -1,14 +1,33 @@
-<app-todo-input
-(add)="addTodo($event)"
-(reset)="resetTodos()"
-></app-todo-input>
 
-<app-todos-list
-[todos]="todos$"
-(add)="addTodo($event)"
-(toggle)="toggleTodo($event)"
-(delete)="deleteTodo($event)"
+<div class="container">
+  <!-- <h1> test</h1> -->
 
->
+  <div
+  *ngIf="(todosError$ | async) === true"
+  class="spinner">
+    <button color="warn" mat-raised-button>HALP! - An error has occured, was not able to load data</button>
+  </div>
+  <div
+    class="spinner"
+    *ngIf="(todosLoading$ | async) === true">
+      <mat-spinner class="spinner"></mat-spinner>
+      <br>
+      <h3>
+        Loading content
+      </h3>
+    </div>
+  <app-todo-input
+  *ngIf="(todosLoading$ | async) === false"
+  [todosCount]="todosCount$"
+  (add)="addTodo($event)"
+  (reset)="resetTodos()"
+  ></app-todo-input>
 
-</app-todos-list>
+  <app-todos-list
+  *ngIf="(todosLoading$ | async) === false"
+  [todos]="todos$"
+  (add)="addTodo($event)"
+  (toggle)="toggleTodo($event)"
+  (delete)="deleteTodo($event)"
+  ></app-todos-list>
+</div>

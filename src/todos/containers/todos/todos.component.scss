@@ -1,0 +1,15 @@
+.container {
+  // text-align: center;
+  height: 100%;
+  display: grid;
+  padding: 20px;
+
+  grid-template-rows: auto;
+  grid-template-areas: 'spinner';
+}
+
+.spinner {
+  grid-area: spinner;
+  margin: 0 auto;
+  text-align: center;
+}

@@ -9,7 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TodosRoutingModule } from './todos-routing.module';
 
 import { TodoReducer } from './store';
@@ -36,7 +36,9 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatCardModule,
     MatCheckboxModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    TodosRoutingModule,
+    MatProgressSpinnerModule
   ],
   providers: [services],
   declarations: [TodosComponent, TodosListComponent, TodoInputComponent]

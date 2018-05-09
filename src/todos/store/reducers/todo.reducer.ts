@@ -1,19 +1,24 @@
-import { Action, createFeatureSelector } from '@ngrx/store';
-import { EntityState, createEntityAdapter } from '@ngrx/entity';
+import { Action, createFeatureSelector, createSelector } from '@ngrx/store';
+import { EntityState, createEntityAdapter, EntityAdapter } from '@ngrx/entity';
 
 import * as fromTodos from '../actions';
 import { Todo } from '../../models/todo.models';
 
-export const todoAdapter = createEntityAdapter<Todo>();
-export interface TodoState extends EntityState<Todo> {}
+export interface TodoState extends EntityState<Todo> {
+  loaded: boolean | null;
+  loading: boolean;
+  error: boolean;
+}
 
-const defaultTodo = {
+export const adapter: EntityAdapter<Todo> = createEntityAdapter<Todo>();
+const initialState = {
   loaded: false,
-  loading: false
+  loading: false,
+  error: false
 };
 
-export const initialTodoState: TodoState = todoAdapter.getInitialState(
-  defaultTodo
+export const initialTodoState: TodoState = adapter.getInitialState(
+  initialState
 );
 export function TodoReducer(
   state = initialTodoState,
@@ -24,37 +29,57 @@ export function TodoReducer(
       return { ...state, loading: true };
 
     case fromTodos.LOAD_TODOS_SUCCESS:
-      return todoAdapter.addMany(action.payload, {
+      return adapter.addMany(action.payload, {
         ...state,
         loading: false,
         loaded: true
       });
 
     case fromTodos.LOAD_TODOS_FAIL:
-      return todoAdapter.addOne(action.payload, state);
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: true
+      };
 
     case fromTodos.ADD_TODO:
-      return todoAdapter.addOne(action.todo, state);
+      return adapter.addOne(action.todo, state);
 
     case fromTodos.UPDATE_TODO:
-      return todoAdapter.updateOne(action.payload.todo, state);
+      return adapter.updateOne(action.payload.todo, state);
 
     case fromTodos.DELETE_TODO:
-      return todoAdapter.removeOne(action.id, state);
+      return adapter.removeOne(action.id, state);
 
     case fromTodos.RESET_TODOS:
-      return todoAdapter.removeAll(state);
+      return adapter.removeAll(state);
 
     default:
       return state;
   }
 }
 
-export const getTodoState = createFeatureSelector<TodoState>('todos');
+export const getTodosState = createFeatureSelector<TodoState>('todos');
+
+export const todosLoaded = (state: TodoState) => state.loaded;
+export const todosLoading = (state: TodoState) => state.loading;
+export const todosError = (state: TodoState) => state.error;
+
+// export const getTodosLoading = (state: TodoState) => state.loading;
+// export const getTodosLoaded = (state: TodoState) => state.loaded;
+
+/**
+ * Create new selector to watch change on selectedTodoId.
+ * Feel lines above, you can see where we create the const selectedId
+ */
+export const getTodosLoaded = createSelector(getTodosState, todosLoaded);
+export const getTodosLoading = createSelector(getTodosState, todosLoading);
+export const getTodosError = createSelector(getTodosState, todosError);
 
 export const {
   selectIds,
   selectEntities,
   selectAll,
   selectTotal
-} = todoAdapter.getSelectors(getTodoState);
+} = adapter.getSelectors(getTodosState);

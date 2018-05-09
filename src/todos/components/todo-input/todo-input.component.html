@@ -1,5 +1,4 @@
 <div class="container">
-
   <h1>Add Todo</h1>
   <!-- {{todoFormGroup.value | json}} - {{todoCount}} -->
   <form class="example-form"  novalidate [formGroup]="todoFormGroup" (ngSubmit)="onSubmit()">
@@ -11,5 +10,5 @@
     </mat-form-field>
     <button type="submit" [disabled]="todoFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
   </form>
-  <button (click)="resetTodos()"  mat-raised-button color="warn">Reset todos</button>
+  <button (click)="resetTodos()" *ngIf="(todosCount | async) !== 0" mat-raised-button color="warn">Reset todos</button>
 </div>

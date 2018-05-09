@@ -1,6 +1,7 @@
 import {
   Component,
   OnInit,
+  Input,
   Output,
   EventEmitter,
   ChangeDetectionStrategy
@@ -23,6 +24,8 @@ import { Todo } from '../../models';
   styleUrls: ['./todo-input.component.scss']
 })
 export class TodoInputComponent implements OnInit {
+  @Input() todosCount: any;
+
   @Output() add = new EventEmitter<Todo>();
   @Output() reset = new EventEmitter<void>();
 
