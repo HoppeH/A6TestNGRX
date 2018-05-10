@@ -8,22 +8,14 @@ import {
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatIconModule } from '@angular/material/icon';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu';
-import { MatGridListModule } from '@angular/material/grid-list';
-
+import { CoreModule } from './core/core.module';
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { counterReducer } from './counter.reducer';
-
-import { AppEffects } from './effects';
-
+import { MaterialModule } from './material/material.module';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Angular CLI environemnt
 
+import { counterReducer } from './core/counter.reducer';
+import { AppComponent } from './core/app.component';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -31,19 +23,14 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ count: counterReducer }),
-    EffectsModule.forRoot([AppEffects]),
+    EffectsModule.forRoot([]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
     StoreRouterConnectingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatMenuModule,
-    MatGridListModule
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -67,18 +67,31 @@ export function TodoReducer(
 
 export const getTodosState = createFeatureSelector<TodoState>('todos');
 
-export const todosLoaded = (state: TodoState) => state.loaded;
-export const todosLoading = (state: TodoState) => state.loading;
-export const todosError = (state: TodoState) => state.error;
+// export const todosLoaded = (state: TodoState) => state.loaded;
+// export const todosLoading = (state: TodoState) => state.loading;
+// export const todosError = (state: TodoState) => state.error;
 
 /**
  * Create new selector to watch change on selectedTodoId.
  * Feel lines above, you can see where we create the const selectedId
  */
-export const getTodosLoaded = createSelector(getTodosState, todosLoaded);
-export const getTodosLoading = createSelector(getTodosState, todosLoading);
-export const getTodosError = createSelector(getTodosState, todosError);
+export const getTodosLoaded = createSelector(
+  getTodosState,
+  (state: TodoState) => state.loaded
+);
+export const getTodosLoading = createSelector(
+  getTodosState,
+  (state: TodoState) => state.loading
+);
+export const getTodosError = createSelector(
+  getTodosState,
+  (state: TodoState) => state.error
+);
 
+/**
+ * Default selectors from Entities
+ *
+ */
 export const {
   selectIds,
   selectEntities,
