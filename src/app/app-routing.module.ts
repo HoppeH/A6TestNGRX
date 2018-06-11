@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: 'todos',
     loadChildren: '../todos/todos.module#TodosModule'
+  },
+  {
+    path: 'simenlogg',
+    loadChildren: '../simenlogg/simenlogg.module#SimenloggModule'
   }
 ];
 
