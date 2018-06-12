@@ -19,7 +19,7 @@ export class LoggsEffects {
   getTodos$ = this.actions$.ofType(loggActions.LOAD_LOGGS).pipe(
     switchMap(() => {
       console.log('loggEffects');
-      return this.loggService.getTodos().pipe(
+      return this.loggService.getLoggs().pipe(
         map(loggs => new loggActions.LoadLoggsSuccess(loggs)),
         catchError(error => of(new loggActions.LoadLoggsFail(error)))
       );
@@ -31,4 +31,14 @@ export class LoggsEffects {
   // catchError(error => of(new todoActions.LoadTodoFail(e/rror)))
   // );
   // });
+
+  // deleteLogg$ = this.actions$.ofType(loggActions.DELETE_LOGG).pipe(
+  //     switchMap(() => {
+  //       console.log('deleteLoggEffects');
+  //       return this.loggService.deleteLogg().pipe(
+  //         map(loggs => new loggActions.LoadLoggsSuccess(logg)),
+  //         catchError(error => of(new loggActions.LoadLoggsFail(error)))
+  //       );
+  //     })
+  //   );
 }

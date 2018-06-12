@@ -1,0 +1,25 @@
+<div class="container">
+
+  <div class="title">
+    <h3>LOGG LIST-TEST</h3>
+    <div *ngIf="((loggs | async)?.length)">
+      Antall Logg entries - {{(loggs | async)?.length}}
+    </div>
+    <div *ngIf="!((loggs | async)?.length)">
+      <span>Finner ingen logger</span>
+    </div>
+  </div>
+
+  <div class="loggList">
+    <mat-card>
+      <mat-card-content *ngFor="let logg of loggs | async" class="example-card">
+
+          {{logg.tidspunkt | date:'dd/MM/yyyy HH:mm':'+0000'}} - {{logg.signatur}}
+
+
+        <mat-icon class="deleteLoggButton" (click)="deleteLogg(logg.id)">delete</mat-icon>
+        <!-- <button mat-raised-button (click)="deleteTodo(todo.id)" color="warn">Delete</button> -->
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

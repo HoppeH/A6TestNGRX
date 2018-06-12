@@ -65,7 +65,7 @@ export function LoggReducer(
   }
 }
 
-export const getLoggsState = createFeatureSelector<LoggState>('todos');
+export const getLoggsState = createFeatureSelector<LoggState>('simenlogg');
 
 // export const todosLoaded = (state: LoggState) => state.loaded;
 // export const todosLoading = (state: LoggState) => state.loading;

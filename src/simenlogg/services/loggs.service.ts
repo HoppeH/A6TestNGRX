@@ -12,10 +12,17 @@ export class LoggsService {
   api: any = 'http://localhost:3000/api/v1';
   constructor(private http: HttpClient) {}
 
-  getTodos(): Observable<Logg[]> {
+  getLoggs(): Observable<Logg[]> {
     console.log('GetLoggs');
     return this.http
       .get<Logg[]>(`${this.api}/simen`)
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
+  }
+
+  deleteLogg(id: number): any {
+    console.log('deleteLogg');
+    return this.http
+      .delete<number>(`${this.api}/simen/${id}`)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 }

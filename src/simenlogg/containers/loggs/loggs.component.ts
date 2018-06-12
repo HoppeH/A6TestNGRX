@@ -15,20 +15,58 @@ import { Logg } from '../../models/';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoggsComponent implements OnInit {
-  todos$: Observable<Logg[]>;
-  todosCount$: Observable<number>;
-  todosLoading$: Observable<boolean>;
-  todosLoaded$: Observable<boolean>;
-  todosError$: Observable<any>;
+  loggs$: Observable<Logg[]>;
+  loggsCount$: Observable<number>;
+  loggsLoading$: Observable<boolean>;
+  loggsLoaded$: Observable<boolean>;
+  loggsError$: Observable<any>;
 
   constructor(private store: Store<fromStore.LoggState>) {}
 
   ngOnInit() {
     this.store.dispatch(new fromStore.LoadLoggs());
-    this.todos$ = this.store.select(fromStore.selectAll);
-    this.todosCount$ = this.store.select(fromStore.selectTotal);
-    this.todosLoading$ = this.store.select(fromStore.getLoggsLoading);
-    this.todosLoaded$ = this.store.select(fromStore.getLoggsLoading);
-    this.todosError$ = this.store.select(fromStore.getLoggsError);
+    this.loggs$ = this.store.select(fromStore.selectAll);
+    this.loggsCount$ = this.store.select(fromStore.selectTotal);
+    this.loggsLoading$ = this.store.select(fromStore.getLoggsLoading);
+    this.loggsLoaded$ = this.store.select(fromStore.getLoggsLoading);
+    this.loggsError$ = this.store.select(fromStore.getLoggsError);
+  }
+
+  addLogg(logg: Logg) {
+    // const LoggData: Logg = {
+    // id: new Date().getMilliseconds().toString(),
+    // name: logg.name,
+    // completed: logg.completed,
+    // completedTime: logg.completedTime
+    // };
+    // const logg1 = Array.of(logg);
+    // this.store.dispatch(new fromStore.AddLogg(LoggData));
+  }
+
+  loadLoggs() {
+    this.store.dispatch(new fromStore.LoadLoggs());
+  }
+
+  deleteLogg(id: string) {
+    this.store.dispatch(new fromStore.DeleteLogg(id));
+  }
+
+  // toggleLogg(logg: Logg) {
+  //   const newLogg = logg;
+  //   newLogg.completed = !logg.completed;
+  //
+  //   if (logg.completed === false) {
+  //     newLogg.completedTime = null;
+  //   } else {
+  //     newLogg.completedTime = new Date();
+  //   }
+  //
+  //   this.store.dispatch(
+  //     new fromStore.UpdateLogg({ logg: { id: newLogg.id, changes: newLogg } })
+  //   );
+  // }
+
+  resetLoggs() {
+    this.store.dispatch(new fromStore.ResetLoggs());
   }
 }

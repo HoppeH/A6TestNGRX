@@ -6,7 +6,8 @@ import { EffectsModule } from '@ngrx/effects';
 
 // Angular Material
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-
+import { MatIconModule } from '@angular/material/icon';
+import { MatCardModule } from '@angular/material/card';
 // routing
 import { SimenloggRoutingModule } from './simenlogg-routing.module';
 
@@ -19,6 +20,7 @@ import { services } from './services';
 
 // containers
 import { LoggsComponent } from './containers/loggs/loggs.component';
+import { LoggListComponent } from './components/logg-list/logg-list.component';
 
 @NgModule({
   imports: [
@@ -27,9 +29,11 @@ import { LoggsComponent } from './containers/loggs/loggs.component';
     SimenloggRoutingModule,
     StoreModule.forFeature('simenlogg', LoggReducer),
     EffectsModule.forFeature(effects),
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatCardModule
   ],
   providers: [services],
-  declarations: [LoggsComponent]
+  declarations: [LoggsComponent, LoggListComponent]
 })
 export class SimenloggModule {}
