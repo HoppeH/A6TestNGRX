@@ -47,8 +47,8 @@ export class LoggsComponent implements OnInit {
     this.store.dispatch(new fromStore.LoadLoggs());
   }
 
-  deleteLogg(id: string) {
-    this.store.dispatch(new fromStore.DeleteLogg(id));
+  deleteLogg(logg: Logg) {
+    this.store.dispatch(new fromStore.DeleteLogg(logg));
   }
 
   // toggleLogg(logg: Logg) {

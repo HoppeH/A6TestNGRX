@@ -1,0 +1,32 @@
+.loggCompleted {
+  text-decoration: line-through;
+  color: #b4b9c1;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+
+  grid-template-rows: 100px auto;
+  grid-template-columns: repeat(1fr, 4);
+  grid-gap: 10px;
+  grid-template-areas:
+    'title'
+    'loggList';
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+}
+
+.loggList {
+  grid-area: loggList;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.deleteTodoButton {
+  cursor: pointer;
+  margin-left: 20px;
+}

@@ -31,14 +31,15 @@ export class LoggsEffects {
   // catchError(error => of(new todoActions.LoadTodoFail(e/rror)))
   // );
   // });
-
-  // deleteLogg$ = this.actions$.ofType(loggActions.DELETE_LOGG).pipe(
-  //     switchMap(() => {
-  //       console.log('deleteLoggEffects');
-  //       return this.loggService.deleteLogg().pipe(
-  //         map(loggs => new loggActions.LoadLoggsSuccess(logg)),
-  //         catchError(error => of(new loggActions.LoadLoggsFail(error)))
-  //       );
-  //     })
-  //   );
+  @Effect()
+  deleteLogg$ = this.actions$.ofType(loggActions.DELETE_LOGG).pipe(
+    map((action: loggActions.DeleteLogg) => action.payload),
+    switchMap(Logg => {
+      console.log('deleteLoggEffects');
+      return this.loggService.deleteLogg(Logg.id).pipe(
+        map(loggs => new loggActions.DeleteLoggSuccess(Logg)),
+        catchError(error => of(new loggActions.LoadLoggsFail(error)))
+      );
+    })
+  );
 }

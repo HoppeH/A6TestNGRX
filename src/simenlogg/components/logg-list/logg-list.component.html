@@ -11,13 +11,18 @@
   </div>
 
   <div class="loggList">
-    <mat-card>
-      <mat-card-content *ngFor="let logg of loggs | async" class="example-card">
+    <mat-card *ngFor="let logg of loggs | async" class="example-card">
+      <mat-card-content >
 
-          {{logg.tidspunkt | date:'dd/MM/yyyy HH:mm':'+0000'}} - {{logg.signatur}}
+          {{logg.id}} - {{logg.tidspunkt | date:'dd/MM/yyyy HH:mm':'+0000'}} - {{logg.signatur}}
+          {{logg.kommentar}} - {{logg.matKommentar}} - {{logg.konsistens}} -
+          {{logg.slim}} -
+          {{logg.blod}} -
+          {{logg.form}} -
 
 
-        <mat-icon class="deleteLoggButton" (click)="deleteLogg(logg.id)">delete</mat-icon>
+
+        <mat-icon class="deleteLoggButton" (click)="deleteLogg(logg)">delete</mat-icon>
         <!-- <button mat-raised-button (click)="deleteTodo(todo.id)" color="warn">Delete</button> -->
       </mat-card-content>
     </mat-card>

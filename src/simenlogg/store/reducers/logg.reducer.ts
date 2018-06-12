@@ -54,8 +54,20 @@ export function LoggReducer(
     case fromLoggs.UPDATE_LOGG:
       return adapter.updateOne(action.payload.logg, state);
 
-    case fromLoggs.DELETE_LOGG:
-      return adapter.removeOne(action.id, state);
+    // case fromLoggs.DELETE_LOGG:
+    //   return adapter.removeOne(action.id, state);
+
+    case fromLoggs.DELETE_LOGG_FAIL:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: true
+      };
+
+    case fromLoggs.DELETE_LOGG_SUCCESS: {
+      return adapter.removeOne(action.payload.id, state);
+    }
 
     case fromLoggs.RESET_LOGGS:
       return adapter.removeAll(state);

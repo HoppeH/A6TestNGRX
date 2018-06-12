@@ -19,7 +19,7 @@ export class LoggsService {
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
 
-  deleteLogg(id: number): any {
+  deleteLogg(id: string): any {
     console.log('deleteLogg');
     return this.http
       .delete<number>(`${this.api}/simen/${id}`)
