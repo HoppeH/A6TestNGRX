@@ -2,12 +2,16 @@
 <div class="container">
   <!-- <h1> test</h1> -->
 
+<app-logg-input
+  (add)=addLogg($event)
+></app-logg-input>
+
   <div
   *ngIf="(loggsError$ | async) === true"
   class="spinner">
     <button color="warn"
     mat-raised-button
-    (click)="loadTodos()">
+    (click)="loadLoggs()">
       HALP! - An error has occured, was not able to load data - Press to reload
     </button>
   </div>
@@ -28,5 +32,6 @@
   (add)="addLogg($event)"
   (toggle)="toggleLogg($event)"
   (delete)="deleteLogg($event)"
+  (load)="loadLoggs()"
   ></app-logg-list>
 </div>

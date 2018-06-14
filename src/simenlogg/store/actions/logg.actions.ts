@@ -8,6 +8,9 @@ export const LOAD_LOGGS_FAIL = '[Loggs] Load Loggs Fail';
 export const LOAD_LOGGS_SUCCESS = '[Loggs] Load Loggs Success';
 
 export const ADD_LOGG = '[Loggs] Add Logg';
+export const ADD_LOGG_FAIL = '[Loggs] Add Logg Fail';
+export const ADD_LOGG_SUCCESS = '[Loggs] Add Logg Success';
+
 export const TOGGLE_LOGG = '[Loggs] Toggle Logg';
 export const UPDATE_LOGG = '[Loggs] Update Logg';
 export const RESET_LOGGS = '[Loggs] Reset Loggs';
@@ -34,6 +37,16 @@ export class LoadLoggsSuccess implements Action {
 //Add Loggs
 export class AddLogg implements Action {
   readonly type = ADD_LOGG;
+  constructor(public payload: Logg) {}
+}
+//Add Loggs
+export class AddLoggFail implements Action {
+  readonly type = ADD_LOGG_FAIL;
+  constructor(public payload: any) {}
+}
+//Add Loggs
+export class AddLoggSuccess implements Action {
+  readonly type = ADD_LOGG_SUCCESS;
   constructor(public logg: Logg) {}
 }
 
@@ -68,6 +81,8 @@ export class ResetLoggs implements Action {
 
 export type LoggActions =
   | AddLogg
+  | AddLoggFail
+  | AddLoggSuccess
   | DeleteLogg
   | DeleteLoggFail
   | DeleteLoggSuccess

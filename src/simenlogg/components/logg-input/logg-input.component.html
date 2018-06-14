@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Add Todo</h1>
+  {{loggFormGroup.value | json}}
+  <form class="example-form"  novalidate [formGroup]="loggFormGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="form" placeholder="Hvordan har formen vært?" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="form.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="konsistens" placeholder="Konsistens på avføring" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="blod" placeholder="Blod i avføring?" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="slim" placeholder="Slim i avføring?" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="matKommentar" placeholder="Har han spist noe spesiel?" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="kommentar" placeholder="Generell kommentar?" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="signatur" placeholder="Signatur" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+    </mat-form-field>
+
+    <button type="submit" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
+  </form>
+  <!-- <button (click)="resetTodos()" *ngIf="(loggsCount | async) !== 0" mat-raised-button color="warn">Reset todos</button> -->
+</div>

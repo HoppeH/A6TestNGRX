@@ -2,6 +2,7 @@
 
   <div class="title">
     <h3>LOGG LIST-TEST</h3>
+    <button mat-raised-button type="button" name="button" (click)="loadLoggs()"> Sync loggs from DB</button>
     <div *ngIf="((loggs | async)?.length)">
       Antall Logg entries - {{(loggs | async)?.length}}
     </div>

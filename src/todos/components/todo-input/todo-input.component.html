@@ -4,9 +4,15 @@
   <form class="example-form"  novalidate [formGroup]="todoFormGroup" (ngSubmit)="onSubmit()">
     <mat-form-field class="example-full-width">
     <input matInput type="" mat-raised-button formControlName="name" placeholder="Add todo" autocomplete= 'false | random-string'>
-    <mat-error *ngIf="name.hasError('required')">
+    <!-- <mat-error *ngIf="name.hasError('required')">
       Du må skrive inn noe for å legge til en todo.
-    </mat-error>
+    </mat-error> -->
+    </mat-form-field>
+    <mat-form-field class="example-full-width">
+    <input matInput type="" mat-raised-button formControlName="name" placeholder="Add todo" autocomplete= 'false | random-string'>
+    <!-- <mat-error *ngIf="name.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
     </mat-form-field>
     <button type="submit" [disabled]="todoFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
   </form>

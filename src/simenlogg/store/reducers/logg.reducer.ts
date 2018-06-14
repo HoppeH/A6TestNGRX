@@ -49,7 +49,30 @@ export function LoggReducer(
       };
 
     case fromLoggs.ADD_LOGG:
-      return adapter.addOne(action.logg, state);
+      return { ...state, loading: true, loaded: false };
+
+    case fromLoggs.ADD_LOGG_FAIL:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: true
+      };
+
+    case fromLoggs.ADD_LOGG_SUCCESS:
+      return adapter.addOne(action.logg, {
+        ...state,
+        loading: false,
+        loaded: true
+      });
+
+    case fromLoggs.LOAD_LOGGS_FAIL:
+      return {
+        ...state,
+        loading: false,
+        loaded: false,
+        error: true
+      };
 
     case fromLoggs.UPDATE_LOGG:
       return adapter.updateOne(action.payload.logg, state);

@@ -31,8 +31,8 @@ export class LoggListComponent {
 
   @Output() add = new EventEmitter<Logg>();
   @Output() toggle = new EventEmitter<Logg>();
-
-  @Output() delete = new EventEmitter<string>();
+  @Output() load = new EventEmitter();
+  @Output() delete = new EventEmitter<Logg>();
 
   constructor() {}
 
@@ -40,10 +40,12 @@ export class LoggListComponent {
     this.add.emit(logg);
   }
 
-  deleteLogg(id: string) {
-    this.delete.emit(id);
+  deleteLogg(logg: Logg) {
+    this.delete.emit(logg);
   }
-
+  loadLoggs() {
+    this.load.emit();
+  }
   toggleCompleted(logg: Logg) {
     // console.log(logg);
     this.toggle.emit(logg);

@@ -7,6 +7,8 @@ import { switchMap, map, catchError } from 'rxjs/operators';
 import * as loggActions from '../actions';
 import * as fromServices from '../../services';
 
+import { Logg } from '../../models';
+
 @Injectable()
 export class LoggsEffects {
   // getTodos$: any;
@@ -38,6 +40,24 @@ export class LoggsEffects {
       console.log('deleteLoggEffects');
       return this.loggService.deleteLogg(Logg.id).pipe(
         map(loggs => new loggActions.DeleteLoggSuccess(Logg)),
+        catchError(error => of(new loggActions.LoadLoggsFail(error)))
+      );
+    })
+  );
+
+  @Effect()
+  addLogg$ = this.actions$.ofType(loggActions.ADD_LOGG).pipe(
+    map((action: loggActions.AddLogg) => action.payload),
+    switchMap(logg => {
+      console.log('AddLoggEffects');
+      return this.loggService.addLogg(logg).pipe(
+        map(
+          returnLogg =>
+            new loggActions.AddLoggSuccess({
+              ...logg,
+              ...returnLogg
+            })
+        ),
         catchError(error => of(new loggActions.LoadLoggsFail(error)))
       );
     })

@@ -33,17 +33,12 @@ export class LoggsComponent implements OnInit {
   }
 
   addLogg(logg: Logg) {
-    // const LoggData: Logg = {
-    // id: new Date().getMilliseconds().toString(),
-    // name: logg.name,
-    // completed: logg.completed,
-    // completedTime: logg.completedTime
-    // };
-    // const logg1 = Array.of(logg);
-    // this.store.dispatch(new fromStore.AddLogg(LoggData));
+    console.log(logg);
+    this.store.dispatch(new fromStore.AddLogg(logg));
   }
 
   loadLoggs() {
+    this.store.dispatch(new fromStore.ResetLoggs());
     this.store.dispatch(new fromStore.LoadLoggs());
   }
 

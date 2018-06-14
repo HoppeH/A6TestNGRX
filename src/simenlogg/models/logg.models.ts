@@ -1,6 +1,6 @@
 export interface Logg {
   id?: string;
-  tidspunkt: Date;
+  tidspunkt?: Date;
   form: string;
   konsistens: string | null;
   blod: boolean | null;
