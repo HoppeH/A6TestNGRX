@@ -5,13 +5,16 @@
 
 .container {
   height: 100%;
+  justify-content: center;
+
   display: grid;
 
   grid-template-rows: 100px auto;
-  grid-template-columns: repeat(1fr, 4);
-  grid-gap: 10px;
+  grid-template-columns: 1fr;
+  grid-gap: 5px;
   grid-template-areas:
     'title'
+    'counterText'
     'loggList';
 }
 
@@ -23,14 +26,43 @@
 .loggList {
   grid-area: loggList;
   text-align: center;
+  justify-content: center;
   vertical-align: middle;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-row: auto;
+  grid-gap: 20px;
 }
 
-.deleteTodoButton {
-  cursor: pointer;
-  margin-left: 20px;
+.loggCard {
+  background-color: #c5c6c9;
+  // grid-area: loggCard;
+  // padding: 10px;
+  // margin: 10px;
 }
+
+.loggCard mat-card-title {
+  background-color: #a9aaad;
+  margin: 5px;
+}
+
+.loggCard mat-card-footer {
+  margin: 5px;
+}
+
+.loggCard mat-card-content {
+  text-align: left;
+}
+.counterText {
+  text-align: center;
+  grid-area: counterText;
+}
+
+// .deleteTodoButton {
+//   cursor: pointer;
+//   padding: 40px;
+// }
 
 div {
-  border: 1px solid black;
+  // border: 1px solid black;
 }

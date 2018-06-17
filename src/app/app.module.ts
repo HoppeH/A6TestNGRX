@@ -5,6 +5,7 @@ import {
   StoreRouterConnectingModule,
   RouterStateSerializer
 } from '@ngrx/router-store';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
@@ -20,6 +21,7 @@ import { AppComponent } from './core/app.component';
   declarations: [AppComponent],
   imports: [
     BrowserModule,
+    FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,
     StoreModule.forRoot({ count: counterReducer }),

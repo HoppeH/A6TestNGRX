@@ -1,55 +1,59 @@
 <div class="container">
-    <div class="title"><h1>Add Todo</h1></div>
-    <div class="json">{{loggFormGroup.value | json}}</div>
+  <div class="title">
+    <h1>Ny registrering</h1></div>
+  <div class="json">{{loggFormGroup.value | json}}</div>
 
-  <form class=""  novalidate [formGroup]="loggFormGroup" (ngSubmit)="onSubmit()">
+  <form class="" novalidate [formGroup]="loggFormGroup" (ngSubmit)="onSubmit()">
     <div class="formClass">
 
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="form" placeholder="Hvordan har formen vært?" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="form.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="konsistens" placeholder="Konsistens på avføring" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="blod" placeholder="Blod i avføring?" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="slim" placeholder="Slim i avføring?" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="matKommentar" placeholder="Har han spist noe spesiel?" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="kommentar" placeholder="Generell kommentar?" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-    <mat-form-field class="formInput">
-    <input matInput type="" mat-raised-button formControlName="signatur" placeholder="Signatur" autocomplete= 'false | random-string'>
-    <!-- <mat-error *ngIf="formtest.hasError('required')">
-      Du må skrive inn noe for å legge til en todo.
-    </mat-error> -->
-    </mat-form-field>
-
-    <button type="submit" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
+      <div class="formInput">
+        <mat-slide-toggle formControlName="blod" color="primary">Blod i avføringen?</mat-slide-toggle>
       </div>
+      <div class="formInput">
+        <mat-slide-toggle formControlName="slim" color="primary">Slim i avføringen?</mat-slide-toggle>
+      </div>
+
+      <mat-form-field class="formInput">
+
+        <input matInput type="text" mat-raised-button formControlName="form" placeholder="Hvordan har formen vært?" autocomplete='false | random-string'>
+        <!-- <mat-error *ngIf="form.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error> -->
+      </mat-form-field>
+
+      <mat-form-field class="formInput">
+        <input type="text" placeholder="Konsistens på avføringen?" aria-label="Number" matInput formControlName="konsistens" [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete" autoActiveFirstOption>
+          <mat-option *ngFor="let konsistens of filtreteValgKonsistens | async" [value]="konsistens">
+            {{ konsistens }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <!-- <mat-form-field class="formInput">
+        <input matInput type="" mat-raised-button #konsistens formControlName="konsistens" placeholder="Konsistens på avføring" autocomplete='false | random-string'>
+        <mat-hint align="end">{{konsistens.value.length}} / 20</mat-hint>
+        <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error>
+      </mat-form-field> -->
+      <mat-form-field class="formInput">
+        <textarea matInput #kommentar placeholder="Kommentar?" formControlName="kommentar"></textarea>
+        <mat-hint align="end">{{kommentar.value.length}} / 256</mat-hint>
+        <!-- <input matInput type="" mat-raised-button formControlName="kommentar" placeholder="" autocomplete='false | random-string'> -->
+        <!-- <mat-error *ngIf="kommentar.hasError('required')">
+          Du må skrive inn noe for å legge til en ny registrering.
+        </mat-error> -->
+      </mat-form-field>
+      <!-- <mat-form-field class="formInput">
+    <input matInput type="" mat-raised-button formControlName="signatur" placeholder="Signatur" autocomplete= 'false | random-string'>
+    <mat-error *ngIf="formtest.hasError('required')">
+      Du må skrive inn noe for å legge til en todo.
+    </mat-error>
+    </mat-form-field> -->
+
+      <button type="submit" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
+    </div>
   </form>
   <!-- <button (click)="resetTodos()" *ngIf="(loggsCount | async) !== 0" mat-raised-button color="warn">Reset todos</button> -->
 </div>

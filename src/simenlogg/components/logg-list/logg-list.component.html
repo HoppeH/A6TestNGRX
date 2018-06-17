@@ -3,29 +3,51 @@
   <div class="title">
     <h3>LOGG LIST-TEST</h3>
     <button mat-raised-button type="button" name="button" (click)="loadLoggs()"> Sync loggs from DB</button>
-    <div *ngIf="((loggs | async)?.length)">
-      Antall Logg entries - {{(loggs | async)?.length}}
-    </div>
-    <div *ngIf="!((loggs | async)?.length)">
-      <span>Finner ingen logger</span>
-    </div>
+
   </div>
-
+  <div *ngIf="((loggs | async)?.length)" class="counterText">
+    Antall Logg entries - {{(loggs | async)?.length}}
+  </div>
+  <div *ngIf="!((loggs | async)?.length)" class="counterText">
+    <span>Finner ingen logger</span>
+  </div>
   <div class="loggList">
-    <mat-card *ngFor="let logg of loggs | async" class="example-card">
-      <mat-card-content >
+    <mat-card *ngFor="let logg of loggs | async" class="loggCard">
+      <mat-card-title>Id: {{logg.id}} - </mat-card-title>
+      <mat-card-subtitle>{{logg.tidspunkt | date:'dd/MM/yyyy HH:mm':'+0200'}} - </mat-card-subtitle>
 
-          {{logg.id}} - {{logg.tidspunkt | date:'dd/MM/yyyy HH:mm':'+0000'}} - {{logg.signatur}}
-          {{logg.kommentar}} - {{logg.matKommentar}} - {{logg.konsistens}} -
-          {{logg.slim}} -
-          {{logg.blod}} -
-          {{logg.form}} -
+      <mat-card-content>
+        <p>
+          Form: {{logg.form}}
+        </p>
+        <p>
+          Kommentar: {{logg.kommentar}}
+        </p>
+        <p>
+          Konsistens:{{logg.konsistens}}
+        </p>
 
-
-
-        <mat-icon class="deleteLoggButton" (click)="deleteLogg(logg)">delete</mat-icon>
-        <!-- <button mat-raised-button (click)="deleteTodo(todo.id)" color="warn">Delete</button> -->
       </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button *ngIf="logg.blod===true" color="warn">Blod: Ja</button>
+        <button mat-raised-button *ngIf="logg.blod===false">Blod: Nei</button>
+        <button mat-raised-button *ngIf="logg.slim===true" color="warn">Slim: Ja</button>
+        <button mat-raised-button *ngIf="logg.slim===false">Slim: Nei</button>
+
+
+
+      </mat-card-actions>
+      <mat-card-footer class="cardFooter">
+        Signatur: {{logg.signatur}}
+
+        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="warn" class="deleteLoggButton" (click)="deleteLogg(logg)">delete</button>
+      </mat-card-footer>
+
+
+
+      <!-- <button mat-raised-button (click)="deleteTodo(todo.id)" color="warn">Delete</button> -->
+
     </mat-card>
   </div>
 </div>

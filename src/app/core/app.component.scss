@@ -13,23 +13,28 @@
 .container {
   height: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   grid-template-rows: 60px auto;
   grid-gap: 10px;
+  grid-template-areas:
+    'title'
+    'routerOutlet';
 }
 .title {
-  grid-column: 1/3;
-  grid-row: 1/2;
+  grid-area: 'title';
+  // grid-column: 1/3;
+  // grid-row: 1/2;
   text-align: center;
 }
-.leftConftent {
-  grid-column: 1/2;
-  grid-row: 2/3;
-  text-align: center;
-}
+// .leftConftent {
+//   grid-column: 1/2;
+//   grid-row: 2/3;
+//   text-align: center;
+// }
 .rightConftent {
-  grid-column: 2/3;
-  grid-row: 2/3;
+  grid-area: 'routerOutlet';
+  // grid-column: 2/3;
+  // grid-row: 2/3;
 }
 
 .divBorder {

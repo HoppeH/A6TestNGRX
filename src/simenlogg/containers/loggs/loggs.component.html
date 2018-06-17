@@ -1,37 +1,21 @@
-
 <div class="container">
   <!-- <h1> test</h1> -->
 
-<app-logg-input
-  (add)=addLogg($event)
-></app-logg-input>
+  <app-logg-input class="loggInput" (add)=addLogg($event)></app-logg-input>
 
-  <div
-  *ngIf="(loggsError$ | async) === true"
-  class="spinner">
-    <button color="warn"
-    mat-raised-button
-    (click)="loadLoggs()">
+  <div *ngIf="(loggsError$ | async) === true" class="spinner">
+    <button color="warn" mat-raised-button (click)="loadLoggs()">
       HALP! - An error has occured, was not able to load data - Press to reload
     </button>
   </div>
-  <div
-    class="spinner"
-    *ngIf="(loggsLoading$ | async) === true">
-      <mat-spinner class="spinner"></mat-spinner>
-      <br>
-      <h3>
+  <div class="spinner" *ngIf="(loggsLoading$ | async) === true">
+    <mat-spinner class="spinner"></mat-spinner>
+    <br>
+    <h3>
         Loading content
       </h3>
-    </div>
+  </div>
 
 
-  <app-logg-list
-  *ngIf="(loggsLoading$ | async) === false"
-  [loggs]="loggs$"
-  (add)="addLogg($event)"
-  (toggle)="toggleLogg($event)"
-  (delete)="deleteLogg($event)"
-  (load)="loadLoggs()"
-  ></app-logg-list>
+  <app-logg-list class="loggList" *ngIf="(loggsLoading$ | async) === false" [loggs]="loggs$" (add)="addLogg($event)" (toggle)="toggleLogg($event)" (delete)="deleteLogg($event)" (load)="loadLoggs()"></app-logg-list>
 </div>

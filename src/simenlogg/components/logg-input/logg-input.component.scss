@@ -1,5 +1,5 @@
 div {
-  border: 1px solid black;
+  // border: 1px solid black;
 }
 
 .formClass {
@@ -11,7 +11,6 @@ div {
   display: grid;
   text-align: center;
 
-  grid-template-rows: 100px auto;
   grid-template-columns: 1fr;
   grid-gap: 10px;
   grid-template-areas:
@@ -33,10 +32,11 @@ div {
 .formClass {
   grid-area: formContainer;
   text-align: center;
+  justify-content: center;
   vertical-align: middle;
   display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 100px auto;
+  grid-template-columns: 80%;
+  grid-template-rows: 40px 40px auto;
 }
 .formInput {
   text-align: center;

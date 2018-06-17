@@ -11,7 +11,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSelectModule } from '@angular/material/select';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 // routing
 import { SimenloggRoutingModule } from './simenlogg-routing.module';
 
@@ -39,7 +41,10 @@ import { LoggInputComponent } from './components/logg-input/logg-input.component
     MatIconModule,
     MatCardModule,
     MatButtonModule,
-    MatInputModule
+    MatInputModule,
+    MatSlideToggleModule,
+    MatSelectModule,
+    MatAutocompleteModule
   ],
   providers: [services],
   declarations: [LoggsComponent, LoggListComponent, LoggInputComponent]

@@ -1,3 +1,53 @@
-.container {
-  border: 1px solid black;
+@media (min-width: 1200px) {
+  .container {
+    // text-align: center;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas:
+      '. loggInput loggInput loggList loggList loggList .'
+      '. loggInput loggInput spinner spinner spinner .';
+  }
+
+  .loggInput {
+    grid-area: loggInput;
+  }
+  .loggList {
+    grid-area: loggList;
+  }
+
+  .spinner {
+    grid-area: spinner;
+    margin: 0 auto;
+    text-align: center;
+  }
+}
+@media (max-width: 1200px) {
+  .container {
+    // text-align: center;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+
+    grid-template-rows: auto;
+    grid-template-areas:
+      'loggInput'
+      'loggList'
+      'spinner';
+  }
+
+  .loggInput {
+    grid-area: loggInput;
+  }
+  .loggList {
+    grid-area: loggList;
+  }
+
+  .spinner {
+    grid-area: spinner;
+    margin: 0 auto;
+    text-align: center;
+  }
 }

@@ -5,7 +5,6 @@ export interface Logg {
   konsistens: string | null;
   blod: boolean | null;
   slim: boolean | null;
-  matKommentar: string;
   kommentar: string;
   signatur: string;
 }
