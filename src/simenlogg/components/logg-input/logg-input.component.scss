@@ -1,0 +1,49 @@
+div {
+  border: 1px solid black;
+}
+
+.formClass {
+  width: 100%;
+}
+
+.container {
+  height: 100%;
+  display: grid;
+  text-align: center;
+
+  grid-template-rows: 100px auto;
+  grid-template-columns: 1fr;
+  grid-gap: 10px;
+  grid-template-areas:
+    'title'
+    'json'
+    'formContainer';
+}
+
+.title {
+  grid-area: title;
+  text-align: center;
+}
+
+.jsonClass {
+  grid-area: loggList;
+  text-align: center;
+  vertical-align: middle;
+}
+.formClass {
+  grid-area: formContainer;
+  text-align: center;
+  vertical-align: middle;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 100px auto;
+}
+.formInput {
+  text-align: center;
+  vertical-align: middle;
+}
+
+.deleteTodoButton {
+  cursor: pointer;
+  margin-left: 20px;
+}
