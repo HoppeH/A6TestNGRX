@@ -12,7 +12,8 @@ div {
   text-align: center;
 
   grid-template-columns: 1fr;
-  grid-gap: 10px;
+  grid-template-rows: 100px 100px 400px auto;
+  grid-gap: 5px;
   grid-template-areas:
     'title'
     'json'
@@ -20,14 +21,16 @@ div {
 }
 
 .title {
+  height: 100px;
   grid-area: title;
   text-align: center;
 }
 
 .jsonClass {
-  grid-area: loggList;
+  grid-area: json;
   text-align: center;
-  vertical-align: middle;
+  vertical-align: top;
+  height: 50px;
 }
 .formClass {
   grid-area: formContainer;

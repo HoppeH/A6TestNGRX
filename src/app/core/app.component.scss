@@ -16,9 +16,6 @@
   grid-template-columns: 1fr;
   grid-template-rows: 60px auto;
   grid-gap: 10px;
-  grid-template-areas:
-    'title'
-    'routerOutlet';
 }
 .title {
   grid-area: 'title';

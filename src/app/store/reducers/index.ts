@@ -94,3 +94,77 @@
 // //   getLayoutState,
 // //   getShowSidenav
 // // );
+import {
+  Action,
+  createFeatureSelector,
+  createSelector,
+  StoreModule,
+  ActionReducerMap
+} from '@ngrx/store';
+import { Params, RouterStateSnapshot } from '@angular/router';
+import {
+  StoreRouterConnectingModule,
+  routerReducer,
+  RouterReducerState,
+  RouterStateSerializer
+} from '@ngrx/router-store';
+
+export interface RouterStateUrl {
+  url: string;
+  params: Params;
+  queryParams: Params;
+}
+
+export interface State {
+  router: RouterReducerState<RouterStateUrl>;
+}
+
+export class CustomSerializer implements RouterStateSerializer<RouterStateUrl> {
+  serialize(routerState: RouterStateSnapshot): RouterStateUrl {
+    let route = routerState.root;
+
+    while (route.firstChild) {
+      route = route.firstChild;
+    }
+
+    const {
+      url,
+      root: { queryParams }
+    } = routerState;
+    const { params } = route;
+
+    // Only return an object including the URL, params and query params
+    // instead of the entire snapshot
+    return { url, params, queryParams };
+  }
+}
+export const reducers: ActionReducerMap<State> = {
+  router: routerReducer
+};
+
+export const getRouterState = createFeatureSelector<
+  RouterReducerState<RouterStateUrl>
+>('router');
+
+/**
+ * Create new selector to watch change on selectedLoggId.
+ * Feel lines above, you can see where we create the const selectedId
+ */
+export const getRouterUrl = createSelector(
+  getRouterState,
+  (state: RouterReducerState<RouterStateUrl>) => state.state && state.state.url
+);
+
+export const getRouterParams = createSelector(
+  getRouterState,
+  (state: RouterReducerState<RouterStateUrl>) => {
+    // console.log('RouterParams', state.state && state.state.params);
+    return state.state && state.state.params.loggId;
+  }
+);
+
+export const getRouterLoggId = createSelector(
+  getRouterState,
+  (state: RouterReducerState<RouterStateUrl>) =>
+    state.state && state.state.params.loggId
+);

@@ -1,10 +1,17 @@
 <div class="container">
   <div class="title">
     <h1>Ny registrering</h1></div>
-  <div class="json">{{loggFormGroup.value | json}}</div>
+  <div class="jsonClass">{{loggFormGroup.value | json}} - UrlState: {{routerUrlState | async}} - loggEdit - {{loggEdit}}</div>
 
   <form class="" novalidate [formGroup]="loggFormGroup" (ngSubmit)="onSubmit()">
     <div class="formClass">
+      <div class="formInput" *ngIf="isEditMode">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="Velg en dato og tidspunkt" formControlName="tidspunkt">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
 
       <div class="formInput">
         <mat-slide-toggle formControlName="blod" color="primary">Blod i avføringen?</mat-slide-toggle>
@@ -55,5 +62,5 @@
       <button type="submit" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
     </div>
   </form>
-  <!-- <button (click)="resetTodos()" *ngIf="(loggsCount | async) !== 0" mat-raised-button color="warn">Reset todos</button> -->
+  <button (click)="onNavigateBack()" mat-raised-button color="primary">Tilbake</button>
 </div>

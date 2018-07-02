@@ -4,6 +4,9 @@ import { Observable } from 'rxjs';
 import { INCREMENT, DECREMENT, RESET } from './counter.reducer';
 import { DeleteTodo, AddTodo, ResetTodos } from './actions';
 import { ChangeDetectionStrategy } from '@angular/core';
+
+import * as fromRouter from '../store';
+
 import * as actions from './actions';
 import * as fromTodos from './counter.reducer';
 
@@ -23,23 +26,17 @@ import { Todo } from './models';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AppComponent {
-  count$: Observable<number>;
-  todos$: Observable<Todo[]>;
   formtodo = '';
   title = 'app';
-  constructor(private store: Store<any>) {
-    this.count$ = store.pipe(select('count'));
-  }
+  constructor(private store: Store<fromRouter.State>) {}
 
-  increment() {
-    this.store.dispatch({ type: INCREMENT });
-  }
-
-  decrement() {
-    this.store.dispatch({ type: DECREMENT });
-  }
-
-  reset() {
-    this.store.dispatch({ type: RESET });
+  navigate(route: string) {
+    this.store.dispatch(
+      new fromRouter.Go({
+        path: [route],
+        query: {},
+        extras: { replaceUrl: false }
+      })
+    );
   }
 }

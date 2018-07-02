@@ -19,6 +19,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { Logg } from '../../models';
 
 @Component({
@@ -30,8 +31,14 @@ import { Logg } from '../../models';
 export class LoggInputComponent implements OnInit {
   @Output() add = new EventEmitter<Logg>();
   @Output() reset = new EventEmitter<void>();
+  @Output() navigateBack = new EventEmitter<void>();
+
+  @Input() isEditMode: boolean;
+  @Input() selectedLogg: Logg;
+  @Input() routerParams: any;
 
   rangeringForm: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 10];
+
   valgKonsistens: string[] = [
     'Hard',
     'Klumpete',
@@ -47,7 +54,9 @@ export class LoggInputComponent implements OnInit {
   constructor(private fb: FormBuilder) {}
 
   ngOnInit() {
+    // console.log(this.routerUrlState);
     this.loggFormGroup = this.fb.group({
+      tidspunkt: [''],
       form: [''],
       konsistens: ['', Validators.maxLength(20)],
       blod: [false],
@@ -65,7 +74,7 @@ export class LoggInputComponent implements OnInit {
 
   onSubmit() {
     this.add.emit(this.loggFormGroup.value);
-    console.log(this.loggFormGroup);
+    console.log(this.loggFormGroup.value);
     this.loggFormGroup.reset({
       form: '',
       konsistens: '',
@@ -79,10 +88,18 @@ export class LoggInputComponent implements OnInit {
     this.reset.emit();
   }
 
+  ngOnChanges(changes: any) {
+    console.log(changes);
+  }
+
   filter(val: string): string[] {
     return this.valgKonsistens.filter(option =>
       option.toLowerCase().includes(val.toLowerCase())
     );
+  }
+
+  onNavigateBack() {
+    this.navigateBack.emit();
   }
 
   get kommentar() {

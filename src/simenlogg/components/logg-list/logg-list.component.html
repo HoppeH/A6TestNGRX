@@ -40,7 +40,7 @@
       <mat-card-footer class="cardFooter">
         Signatur: {{logg.signatur}}
 
-        <button mat-raised-button color="primary">Edit</button>
+        <button mat-raised-button color="primary" (click)="onEditLogg(logg)">Edit</button>
         <button mat-raised-button color="warn" class="deleteLoggButton" (click)="deleteLogg(logg)">delete</button>
       </mat-card-footer>
 

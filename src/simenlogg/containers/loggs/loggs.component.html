@@ -1,8 +1,9 @@
+ RouterUrl - {{routerUrl$ | async}} RouterParams - {{routerParams$ | async}} SelectedLogg - {{selectedLogg$ | async}}
 <div class="container">
   <!-- <h1> test</h1> -->
+  <!-- <router-outlet></router-outlet> -->
 
-  <app-logg-input class="loggInput" (add)=addLogg($event)></app-logg-input>
-
+  <button mat-raised-button color="primary" (click)="routerGotoNew()"> Legg til ny registrering</button>
   <div *ngIf="(loggsError$ | async) === true" class="spinner">
     <button color="warn" mat-raised-button (click)="loadLoggs()">
       HALP! - An error has occured, was not able to load data - Press to reload
@@ -17,5 +18,5 @@
   </div>
 
 
-  <app-logg-list class="loggList" *ngIf="(loggsLoading$ | async) === false" [loggs]="loggs$" (add)="addLogg($event)" (toggle)="toggleLogg($event)" (delete)="deleteLogg($event)" (load)="loadLoggs()"></app-logg-list>
+  <app-logg-list class="loggList" *ngIf="(loggsLoading$ | async) === false" [loggs]="loggs$" (add)="addLogg($event)" (delete)="deleteLogg($event)" (load)="loadLoggs()" (edit)=editLogg($event)></app-logg-list>
 </div>

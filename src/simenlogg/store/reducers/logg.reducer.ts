@@ -5,6 +5,7 @@ import * as fromLoggs from '../actions';
 import { Logg } from '../../models/logg.models';
 
 export interface LoggState extends EntityState<Logg> {
+  editingLogg: Logg | null;
   loaded: boolean | null;
   loading: boolean;
   error: boolean;
@@ -12,6 +13,7 @@ export interface LoggState extends EntityState<Logg> {
 
 export const adapter: EntityAdapter<Logg> = createEntityAdapter<Logg>();
 const initialState = {
+  editingLogg: null,
   loaded: false,
   loading: false,
   error: false
@@ -113,6 +115,10 @@ export const getLoggsState = createFeatureSelector<LoggState>('simenlogg');
 export const getLoggsLoaded = createSelector(
   getLoggsState,
   (state: LoggState) => state.loaded
+);
+export const getEditingLogg = createSelector(
+  getLoggsState,
+  (state: LoggState) => state.editingLogg
 );
 export const getLoggsLoading = createSelector(
   getLoggsState,

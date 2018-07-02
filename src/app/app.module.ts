@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {
   StoreRouterConnectingModule,
+  routerReducer,
+  RouterReducerState,
   RouterStateSerializer
 } from '@ngrx/router-store';
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -16,7 +18,9 @@ import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Angular CLI environemnt
 
 import { counterReducer } from './core/counter.reducer';
+import { reducers, CustomSerializer } from './store/reducers';
 import { AppComponent } from './core/app.component';
+import { RouterEffects } from './store/effects';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -24,17 +28,17 @@ import { AppComponent } from './core/app.component';
     FlexLayoutModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({ count: counterReducer }),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([RouterEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production // Restrict extension to log-only mode
     }),
-    StoreRouterConnectingModule,
+    StoreRouterConnectingModule.forRoot({ stateKey: 'router' }),
     BrowserAnimationsModule,
     MaterialModule
   ],
-  providers: [],
+  providers: [{ provide: RouterStateSerializer, useClass: CustomSerializer }],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

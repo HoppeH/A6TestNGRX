@@ -14,6 +14,8 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material';
 // routing
 import { SimenloggRoutingModule } from './simenlogg-routing.module';
 
@@ -28,6 +30,8 @@ import { services } from './services';
 import { LoggsComponent } from './containers/loggs/loggs.component';
 import { LoggListComponent } from './components/logg-list/logg-list.component';
 import { LoggInputComponent } from './components/logg-input/logg-input.component';
+import { LoggEditComponent } from './components/logg-edit/logg-edit.component';
+import { LoggInputEditComponent } from './containers/logg-input-edit/logg-input-edit.component';
 
 @NgModule({
   imports: [
@@ -44,9 +48,17 @@ import { LoggInputComponent } from './components/logg-input/logg-input.component
     MatInputModule,
     MatSlideToggleModule,
     MatSelectModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [services],
-  declarations: [LoggsComponent, LoggListComponent, LoggInputComponent]
+  declarations: [
+    LoggsComponent,
+    LoggListComponent,
+    LoggInputComponent,
+    LoggEditComponent,
+    LoggInputEditComponent
+  ]
 })
 export class SimenloggModule {}

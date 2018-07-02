@@ -52,11 +52,7 @@ export class LoggsEffects {
       console.log('AddLoggEffects');
       return this.loggService.addLogg(logg).pipe(
         map(
-          returnLogg =>
-            new loggActions.AddLoggSuccess({
-              ...logg,
-              ...returnLogg
-            })
+          returnLogg => new loggActions.AddLoggSuccess(returnLogg.recordset[0])
         ),
         catchError(error => of(new loggActions.LoadLoggsFail(error)))
       );

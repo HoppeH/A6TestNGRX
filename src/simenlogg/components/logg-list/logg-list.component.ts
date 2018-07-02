@@ -30,9 +30,9 @@ export class LoggListComponent {
   @Input() loggs: Logg[];
 
   @Output() add = new EventEmitter<Logg>();
-  @Output() toggle = new EventEmitter<Logg>();
   @Output() load = new EventEmitter();
   @Output() delete = new EventEmitter<Logg>();
+  @Output() edit = new EventEmitter<Logg>();
 
   constructor() {}
 
@@ -46,8 +46,8 @@ export class LoggListComponent {
   loadLoggs() {
     this.load.emit();
   }
-  toggleCompleted(logg: Logg) {
-    // console.log(logg);
-    this.toggle.emit(logg);
+
+  onEditLogg(logg: Logg) {
+    this.edit.emit(logg);
   }
 }
