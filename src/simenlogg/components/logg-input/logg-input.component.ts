@@ -30,6 +30,7 @@ import { Logg } from '../../models';
 })
 export class LoggInputComponent implements OnInit {
   @Output() add = new EventEmitter<Logg>();
+  @Output() update = new EventEmitter<Logg>();
   @Output() reset = new EventEmitter<void>();
   @Output() navigateBack = new EventEmitter<void>();
 
@@ -55,7 +56,9 @@ export class LoggInputComponent implements OnInit {
 
   ngOnInit() {
     // console.log(this.routerUrlState);
+
     this.loggFormGroup = this.fb.group({
+      id: '',
       tidspunkt: [''],
       form: [''],
       konsistens: ['', Validators.maxLength(20)],
@@ -65,6 +68,12 @@ export class LoggInputComponent implements OnInit {
       kommentar: ['', [Validators.maxLength(250)]],
       signatur: ['TEF', Validators.required]
     });
+
+    console.log(this.selectedLogg);
+    if (this.selectedLogg !== undefined) {
+      console.log(this.selectedLogg);
+      this.loggFormGroup.setValue(this.selectedLogg);
+    }
 
     this.filtreteValgKonsistens = this.kommentar.valueChanges.pipe(
       startWith(''),
@@ -84,12 +93,9 @@ export class LoggInputComponent implements OnInit {
     });
   }
 
-  resetTodos() {
-    this.reset.emit();
-  }
-
-  ngOnChanges(changes: any) {
-    console.log(changes);
+  onUpdate() {
+    console.log('Update Logg', this.loggFormGroup.value);
+    this.update.emit(this.loggFormGroup.value);
   }
 
   filter(val: string): string[] {

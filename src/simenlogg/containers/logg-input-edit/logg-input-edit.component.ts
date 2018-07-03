@@ -19,6 +19,7 @@ export class LoggInputEditComponent implements OnInit {
   routerParams$: Observable<any>;
   selectedLogg$: Observable<Logg>;
 
+  selectedLoggSubscription: any;
   constructor(
     private store: Store<fromLoggStore.LoggState>,
     private routerStore: Store<fromRouterStore.State>
@@ -29,12 +30,27 @@ export class LoggInputEditComponent implements OnInit {
     this.routerParams$ = this.routerStore.select(
       fromRouterStore.getRouterParams
     );
+
     this.selectedLogg$ = this.store.pipe(select(fromLoggStore.getSelectedLogg));
+    this.selectedLoggSubscription = this.selectedLogg$.subscribe(x => {});
+    // console.log(this.selectedLoggSubscription);
   }
 
   addLogg(logg: Logg) {
     console.log('Logg-input-edit', logg);
     this.store.dispatch(new fromLoggStore.AddLogg(logg));
+    this.routerStore.dispatch(
+      new fromRouterStore.Go({
+        path: ['simenlogg'],
+        query: {},
+        extras: { replaceUrl: false }
+      })
+    );
+  }
+
+  updateLogg(logg: Logg) {
+    console.log('Logg-input-edit', logg);
+    this.store.dispatch(new fromLoggStore.UpdateLogg(logg));
     this.routerStore.dispatch(
       new fromRouterStore.Go({
         path: ['simenlogg'],

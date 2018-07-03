@@ -58,4 +58,24 @@ export class LoggsEffects {
       );
     })
   );
+
+  @Effect()
+  updateLogg$ = this.actions$.ofType(loggActions.UPDATE_LOGG).pipe(
+    map((action: loggActions.UpdateLogg) => action.payload),
+    switchMap(logg => {
+      console.log('UpdateLoggEffects', logg);
+      return this.loggService.updateLogg(logg).pipe(
+        map(
+          returnLogg =>
+            new loggActions.UpdateLoggSuccess({
+              logg: {
+                id: returnLogg.recordset[0].id,
+                changes: returnLogg.recordset[0]
+              }
+            })
+        ),
+        catchError(error => of(new loggActions.UpdateLoggFail(error)))
+      );
+    })
+  );
 }

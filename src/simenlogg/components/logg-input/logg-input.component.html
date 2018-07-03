@@ -59,8 +59,9 @@
     </mat-error>
     </mat-form-field> -->
 
-      <button type="submit" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Add todo</button>
+      <button type="submit" *ngIf="selectedLogg===undefined" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Lagre logg</button>
     </div>
   </form>
+  <button type="submit" (click)="onUpdate()" *ngIf="selectedLogg!==undefined" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Update logg</button>
   <button (click)="onNavigateBack()" mat-raised-button color="primary">Tilbake</button>
 </div>

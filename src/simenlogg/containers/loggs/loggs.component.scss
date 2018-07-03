@@ -4,11 +4,12 @@
     height: 100%;
     display: grid;
     padding: 20px;
-    grid-template-columns: repeat(7, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-template-rows: auto;
     grid-template-areas:
-      '. loggInput loggInput loggList loggList loggList .'
-      '. loggInput loggInput spinner spinner spinner .';
+      '.  . newReg . .'
+      '. . loggList . .'
+      '. . spinner . .';
   }
 
   .loggInput {
@@ -22,6 +23,10 @@
     grid-area: spinner;
     margin: 0 auto;
     text-align: center;
+  }
+
+  .newReg {
+    grid-area: newReg;
   }
 }
 @media (max-width: 1200px) {

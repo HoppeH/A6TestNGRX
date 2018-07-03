@@ -3,7 +3,7 @@
   <!-- <h1> test</h1> -->
   <!-- <router-outlet></router-outlet> -->
 
-  <button mat-raised-button color="primary" (click)="routerGotoNew()"> Legg til ny registrering</button>
+  <button mat-raised-button color="primary" class="newReg" (click)="routerGotoNew()"> Legg til ny registrering</button>
   <div *ngIf="(loggsError$ | async) === true" class="spinner">
     <button color="warn" mat-raised-button (click)="loadLoggs()">
       HALP! - An error has occured, was not able to load data - Press to reload

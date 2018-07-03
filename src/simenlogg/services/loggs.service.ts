@@ -37,4 +37,14 @@ export class LoggsService {
       .post<Logg>(`${this.api}/simen`, body)
       .pipe(catchError((error: any) => Observable.throw(error.json())));
   }
+
+  updateLogg(logg: Partial<Logg>): Observable<any> {
+    console.log('AddLogg');
+
+    let body = logg;
+
+    return this.http
+      .put<Partial<Logg>>(`${this.api}/simen`, body)
+      .pipe(catchError((error: any) => Observable.throw(error.json())));
+  }
 }

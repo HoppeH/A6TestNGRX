@@ -13,6 +13,8 @@ export const ADD_LOGG_SUCCESS = '[Loggs] Add Logg Success';
 
 export const TOGGLE_LOGG = '[Loggs] Toggle Logg';
 export const UPDATE_LOGG = '[Loggs] Update Logg';
+export const UPDATE_LOGG_FAIL = '[Loggs] Update Logg Fail';
+export const UPDATE_LOGG_SUCCESS = '[Loggs] Update Logg Success';
 export const RESET_LOGGS = '[Loggs] Reset Loggs';
 
 export const DELETE_LOGG = '[Loggs] Delete Logg';
@@ -52,7 +54,16 @@ export class AddLoggSuccess implements Action {
 
 export class UpdateLogg implements Action {
   readonly type = UPDATE_LOGG;
+  constructor(public payload: Logg) {}
+}
+
+export class UpdateLoggSuccess implements Action {
+  readonly type = UPDATE_LOGG_SUCCESS;
   constructor(public payload: { logg: Update<Logg> }) {}
+}
+export class UpdateLoggFail implements Action {
+  readonly type = UPDATE_LOGG_FAIL;
+  constructor(public payload: any) {}
 }
 
 export class DeleteLogg implements Action {

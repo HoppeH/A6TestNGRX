@@ -1,1 +1,3 @@
-<app-logg-input class="loggInput" [routerParams]="routerParams$" [selectedLogg]="selectedLogg$" (navigateBack)="navigateBack()" (add)="addLogg($event)"></app-logg-input>
+<div class="container">
+  <app-logg-input class="loggInput" [routerParams]="routerParams$" [selectedLogg]="selectedLogg$ | async" (navigateBack)="navigateBack()" (add)="addLogg($event)" (update)="updateLogg($event)"></app-logg-input>
+</div>

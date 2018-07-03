@@ -1,0 +1,47 @@
+@media (min-width: 700px) {
+  .container {
+    // text-align: center;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: '. . form form form form . .';
+  }
+
+  .loggInput {
+    grid-area: form;
+  }
+}
+
+@media (min-width: 1000px) {
+  .container {
+    // text-align: center;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: '. . form form form . . ';
+  }
+
+  .loggInput {
+    grid-area: form;
+  }
+}
+
+@media (min-width: 1200px) {
+  .container {
+    // text-align: center;
+    height: 100%;
+    display: grid;
+    padding: 20px;
+    grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: auto;
+    grid-template-areas: '. . form form form . .';
+  }
+
+  .loggInput {
+    grid-area: form;
+  }
+}

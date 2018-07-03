@@ -76,7 +76,7 @@ export function LoggReducer(
         error: true
       };
 
-    case fromLoggs.UPDATE_LOGG:
+    case fromLoggs.UPDATE_LOGG_SUCCESS:
       return adapter.updateOne(action.payload.logg, state);
 
     // case fromLoggs.DELETE_LOGG:
