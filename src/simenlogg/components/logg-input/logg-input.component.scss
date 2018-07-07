@@ -12,18 +12,22 @@ div {
   text-align: center;
 
   grid-template-columns: 1fr;
-  grid-template-rows: 100px 100px 400px auto;
+  grid-template-rows: 100px auto 40px auto;
   grid-gap: 5px;
   grid-template-areas:
     'title'
-    'json'
-    'formContainer';
+    'formContainer'
+    'backButton';
 }
 
 .title {
   height: 100px;
   grid-area: title;
   text-align: center;
+}
+
+.backButton {
+  grid-area: backButton;
 }
 
 .jsonClass {

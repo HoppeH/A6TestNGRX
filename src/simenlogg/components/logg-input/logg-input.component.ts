@@ -60,11 +60,10 @@ export class LoggInputComponent implements OnInit {
     this.loggFormGroup = this.fb.group({
       id: '',
       tidspunkt: [''],
-      form: [''],
-      konsistens: ['', Validators.maxLength(20)],
+      form: ['', Validators.required],
+      konsistens: ['', [Validators.required, Validators.maxLength(20)]],
       blod: [false],
       slim: [false],
-
       kommentar: ['', [Validators.maxLength(250)]],
       signatur: ['TEF', Validators.required]
     });
@@ -75,7 +74,7 @@ export class LoggInputComponent implements OnInit {
       this.loggFormGroup.setValue(this.selectedLogg);
     }
 
-    this.filtreteValgKonsistens = this.kommentar.valueChanges.pipe(
+    this.filtreteValgKonsistens = this.konsistens.valueChanges.pipe(
       startWith(''),
       map(val => this.filter(val))
     );
@@ -108,7 +107,7 @@ export class LoggInputComponent implements OnInit {
     this.navigateBack.emit();
   }
 
-  get kommentar() {
+  get konsistens() {
     return this.loggFormGroup.get('konsistens');
   }
 }
