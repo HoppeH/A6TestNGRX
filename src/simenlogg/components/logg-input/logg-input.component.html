@@ -1,7 +1,7 @@
 <div class="container">
   <div class="title">
     <h1>Ny registrering</h1></div>
-  <div class="jsonClass">{{loggFormGroup.value | json}} - UrlState: {{routerUrlState | async}} - loggEdit - {{loggEdit}}</div>
+  <!-- <div class="jsonClass">{{loggFormGroup.value | json}} - UrlState: {{routerUrlState | async}} - loggEdit - {{loggEdit}}</div> -->
 
   <form class="" novalidate [formGroup]="loggFormGroup" (ngSubmit)="onSubmit()">
     <div class="formClass">
@@ -47,10 +47,9 @@
       <mat-form-field class="formInput">
         <textarea matInput #kommentar placeholder="Kommentar?" formControlName="kommentar"></textarea>
         <mat-hint align="end">{{kommentar.value.length}} / 256</mat-hint>
-        <!-- <input matInput type="" mat-raised-button formControlName="kommentar" placeholder="" autocomplete='false | random-string'> -->
-        <!-- <mat-error *ngIf="kommentar.hasError('required')">
-          Du må skrive inn noe for å legge til en ny registrering.
-        </mat-error> -->
+        <mat-error *ngIf="loggFormGroup.hasError('kommentar')">
+          OBS! Det kan maks være 250 tegn i kommentaren.
+        </mat-error>
       </mat-form-field>
       <!-- <mat-form-field class="formInput">
     <input matInput type="" mat-raised-button formControlName="signatur" placeholder="Signatur" autocomplete= 'false | random-string'>
@@ -63,5 +62,5 @@
     </div>
   </form>
   <button type="submit" (click)="onUpdate()" *ngIf="selectedLogg!==undefined" class="formInput" [disabled]="loggFormGroup.invalid" matInput color="primary" mat-raised-button>Update logg</button>
-  <button (click)="onNavigateBack()" mat-raised-button color="primary">Tilbake</button>
+  <button class="backButton" (click)="onNavigateBack()" mat-raised-button color="primary">Tilbake</button>
 </div>
