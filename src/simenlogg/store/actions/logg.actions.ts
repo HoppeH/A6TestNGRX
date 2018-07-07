@@ -12,9 +12,11 @@ export const ADD_LOGG_FAIL = '[Loggs] Add Logg Fail';
 export const ADD_LOGG_SUCCESS = '[Loggs] Add Logg Success';
 
 export const TOGGLE_LOGG = '[Loggs] Toggle Logg';
+
 export const UPDATE_LOGG = '[Loggs] Update Logg';
 export const UPDATE_LOGG_FAIL = '[Loggs] Update Logg Fail';
 export const UPDATE_LOGG_SUCCESS = '[Loggs] Update Logg Success';
+
 export const RESET_LOGGS = '[Loggs] Reset Loggs';
 
 export const DELETE_LOGG = '[Loggs] Delete Logg';
@@ -98,6 +100,8 @@ export type LoggActions =
   | DeleteLoggFail
   | DeleteLoggSuccess
   | UpdateLogg
+  | UpdateLoggSuccess
+  | UpdateLoggFail
   | ResetLoggs
   | ToggleLogg
   | LoadLoggs
