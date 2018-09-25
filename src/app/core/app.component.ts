@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { Store, select } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { INCREMENT, DECREMENT, RESET } from './counter.reducer';
 import { DeleteTodo, AddTodo, ResetTodos } from './actions';
+import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy } from '@angular/core';
+import { Store, select } from '@ngrx/store';
 
 import * as fromRouter from '../store';
 

@@ -1,26 +1,39 @@
+// Angular imports
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Angular CLI environemnt
+
+// environment variables
+import { environment } from '../environments/environment';
+
+// Angular material
+import { MaterialModule } from './material/material.module';
+
+// Flexbox
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+// Custom components
+import { AppComponent } from './core/app.component';
+import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+
+// NGRX
 import {
   StoreRouterConnectingModule,
   routerReducer,
   RouterReducerState,
   RouterStateSerializer
 } from '@ngrx/router-store';
-import { FlexLayoutModule } from '@angular/flex-layout';
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { EffectsModule } from '@ngrx/effects';
-import { CoreModule } from './core/core.module';
-import { AppRoutingModule } from './app-routing.module';
-import { MaterialModule } from './material/material.module';
-import { environment } from '../environments/environment';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; // Angular CLI environemnt
 
+// NGRX Custom
+import { RouterEffects } from './store/effects';
 import { counterReducer } from './core/counter.reducer';
 import { reducers, CustomSerializer } from './store/reducers';
-import { AppComponent } from './core/app.component';
-import { RouterEffects } from './store/effects';
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
